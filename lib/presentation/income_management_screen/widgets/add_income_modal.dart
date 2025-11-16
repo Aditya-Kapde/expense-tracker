@@ -179,7 +179,7 @@ class _AddIncomeModalState extends State<AddIncomeModal> {
             prefixIcon: Padding(
               padding: EdgeInsets.all(3.w),
               child: Text(
-                '\$',
+                '₹',
                 style: theme.textTheme.titleLarge?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w600,
