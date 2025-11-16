@@ -140,7 +140,7 @@ class _QuickExpenseFabWidgetState extends State<QuickExpenseFabWidget>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content:
-            Text('Added \$${amount.toStringAsFixed(2)} expense to $category'),
+            Text('Added ₹${amount.toStringAsFixed(2)} expense to $category'),
         backgroundColor: AppTheme.getSuccessColor(
             Theme.of(context).brightness == Brightness.dark),
       ),

@@ -118,7 +118,7 @@ class SpendingVelocityWidget extends StatelessWidget {
                 child: _buildMetricCard(
                   context,
                   'Current Pace',
-                  '\$${currentPace.toStringAsFixed(2)}/day',
+                  '₹${currentPace.toStringAsFixed(2)}/day',
                   statusColor,
                 ),
               ),
@@ -127,7 +127,7 @@ class SpendingVelocityWidget extends StatelessWidget {
                 child: _buildMetricCard(
                   context,
                   'Projected Total',
-                  '\$${projectedSpend.toStringAsFixed(2)}',
+                  '₹${projectedSpend.toStringAsFixed(2)}',
                   projectedSpend > budgetLimit
                       ? theme.colorScheme.error
                       : statusColor,
@@ -151,7 +151,7 @@ class SpendingVelocityWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$${budgetLimit.toStringAsFixed(2)} limit',
+                    '₹${budgetLimit.toStringAsFixed(2)} limit',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w500,

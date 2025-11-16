@@ -123,7 +123,7 @@ class BudgetAlertWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ' • \$${amount.toStringAsFixed(2)}',
+                        ' • ₹${amount.toStringAsFixed(2)}',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: alertColor,
                           fontWeight: FontWeight.w600,

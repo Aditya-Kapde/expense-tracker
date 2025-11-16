@@ -139,7 +139,7 @@ class RecentTransactionItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '${isIncome ? '+' : '-'}\$${amount.toStringAsFixed(2)}',
+                    '${isIncome ? '+' : '-'}₹${amount.toStringAsFixed(2)}',
                     style: theme.textTheme.titleSmall?.copyWith(
                       color: isIncome
                           ? AppTheme.getSuccessColor(

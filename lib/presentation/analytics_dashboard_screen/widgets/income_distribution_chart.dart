@@ -250,7 +250,7 @@ class _IncomeDistributionChartState extends State<IncomeDistributionChart> {
                                       ],
                                     ),
                                     child: Text(
-                                      '\$${(data['amount'] as double).toStringAsFixed(0)}',
+                                      '₹${(data['amount'] as double).toStringAsFixed(0)}',
                                       style:
                                           theme.textTheme.labelSmall?.copyWith(
                                         fontWeight: FontWeight.w600,
@@ -306,7 +306,7 @@ class _IncomeDistributionChartState extends State<IncomeDistributionChart> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      '\$${(data['amount'] as double).toStringAsFixed(0)} (${percentage.toStringAsFixed(1)}%)',
+                                      '₹${(data['amount'] as double).toStringAsFixed(0)} (${percentage.toStringAsFixed(1)}%)',
                                       style:
                                           theme.textTheme.labelSmall?.copyWith(
                                         color: colorScheme.onSurfaceVariant,
@@ -320,7 +320,7 @@ class _IncomeDistributionChartState extends State<IncomeDistributionChart> {
                             ],
                           ),
                         );
-                      }).toList(),
+                      }),
                       SizedBox(height: 2.h),
                       Container(
                         padding: EdgeInsets.all(2.w),
@@ -339,7 +339,7 @@ class _IncomeDistributionChartState extends State<IncomeDistributionChart> {
                               ),
                             ),
                             Text(
-                              '\$${totalIncome.toStringAsFixed(0)}',
+                              '₹${totalIncome.toStringAsFixed(0)}',
                               style: theme.textTheme.titleMedium?.copyWith(
                                 color: colorScheme.primary,
                                 fontWeight: FontWeight.w700,

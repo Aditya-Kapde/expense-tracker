@@ -158,7 +158,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen>
                   builder: (context, child) => FadeTransition(
                     opacity: _fadeAnimation,
                     child: const GreetingHeader(
-                      userName: 'Sarah Johnson',
+                      userName: 'Abhish kapdekar',
                     ),
                   ),
                 ),
@@ -180,7 +180,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen>
                                 child: FinancialSummaryCard(
                                   title: 'Total Income',
                                   amount:
-                                      '\$${_financialData['totalIncome'].toStringAsFixed(2)}',
+                                      '₹${_financialData['totalIncome'].toStringAsFixed(2)}',
                                   backgroundColor: AppTheme.getSuccessColor(
                                           theme.brightness == Brightness.light)
                                       .withValues(alpha: 0.1),
@@ -196,7 +196,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen>
                                 child: FinancialSummaryCard(
                                   title: 'Total Expenses',
                                   amount:
-                                      '\$${_financialData['totalExpenses'].toStringAsFixed(2)}',
+                                      '₹${_financialData['totalExpenses'].toStringAsFixed(2)}',
                                   backgroundColor: theme.colorScheme.error
                                       .withValues(alpha: 0.1),
                                   textColor: theme.colorScheme.error,
@@ -211,7 +211,7 @@ class _DashboardHomeScreenState extends State<DashboardHomeScreen>
                           FinancialSummaryCard(
                             title: 'Total Savings',
                             amount:
-                                '\$${_financialData['savings'].toStringAsFixed(2)}',
+                                '₹${_financialData['savings'].toStringAsFixed(2)}',
                             backgroundColor: theme.colorScheme.primary
                                 .withValues(alpha: 0.1),
                             textColor: theme.colorScheme.primary,

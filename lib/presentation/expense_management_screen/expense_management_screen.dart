@@ -383,7 +383,7 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Amount: \$${expense['amount'].toStringAsFixed(2)}'),
+            Text('Amount: ₹${expense['amount'].toStringAsFixed(2)}'),
             Text('Category: ${expense['category']}'),
             Text('Date: ${_formatDate(expense['date'])}'),
           ],

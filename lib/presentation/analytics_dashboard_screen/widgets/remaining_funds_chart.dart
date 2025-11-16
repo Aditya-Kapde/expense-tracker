@@ -194,7 +194,7 @@ class _RemainingFundsChartState extends State<RemainingFundsChart> {
                                         ),
                                         SizedBox(height: 0.5.h),
                                         Text(
-                                          '\$${(data['amount'] as double).toStringAsFixed(0)}',
+                                          '₹${(data['amount'] as double).toStringAsFixed(0)}',
                                           style: theme.textTheme.labelSmall
                                               ?.copyWith(
                                             fontWeight: FontWeight.w600,
@@ -264,7 +264,7 @@ class _RemainingFundsChartState extends State<RemainingFundsChart> {
                                 ),
                                 SizedBox(height: 1.h),
                                 Text(
-                                  '\$${(data['amount'] as double).toStringAsFixed(0)}',
+                                  '₹${(data['amount'] as double).toStringAsFixed(0)}',
                                   style: theme.textTheme.titleMedium?.copyWith(
                                     fontWeight: FontWeight.w700,
                                     color: data['color'] as Color,
@@ -280,7 +280,7 @@ class _RemainingFundsChartState extends State<RemainingFundsChart> {
                             ),
                           ),
                         );
-                      }).toList(),
+                      }),
 
                       // Savings rate indicator
                       Container(

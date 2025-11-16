@@ -90,8 +90,9 @@ class FinancialSummaryCard extends StatelessWidget {
   String _getIconName(IconData iconData) {
     if (iconData == Icons.trending_up) return 'trending_up';
     if (iconData == Icons.trending_down) return 'trending_down';
-    if (iconData == Icons.account_balance_wallet)
+    if (iconData == Icons.account_balance_wallet) {
       return 'account_balance_wallet';
+    }
     return 'attach_money';
   }
 }

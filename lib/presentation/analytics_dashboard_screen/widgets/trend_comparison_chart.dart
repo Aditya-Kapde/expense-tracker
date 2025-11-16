@@ -406,8 +406,8 @@ class _TrendComparisonChartState extends State<TrendComparisonChart> {
                         getTitlesWidget: (double value, TitleMeta meta) {
                           return Text(
                             value >= 1000
-                                ? '\$${(value / 1000).toStringAsFixed(0)}k'
-                                : '\$${value.toInt()}',
+                                ? '₹${(value / 1000).toStringAsFixed(0)}k'
+                                : '₹${value.toInt()}',
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                             ),
@@ -515,7 +515,7 @@ class _TrendComparisonChartState extends State<TrendComparisonChart> {
                         return touchedBarSpots.map((barSpot) {
                           final flSpot = barSpot;
                           return LineTooltipItem(
-                            '\$${flSpot.y.toStringAsFixed(0)}',
+                            '₹${flSpot.y.toStringAsFixed(0)}',
                             theme.textTheme.labelMedium?.copyWith(
                                   color: colorScheme.onSurface,
                                   fontWeight: FontWeight.w600,

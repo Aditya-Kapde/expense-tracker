@@ -70,7 +70,7 @@ class ExpenseCardWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "-\$${(expense["amount"] as double).toStringAsFixed(2)}",
+                            '-₹${(expense["amount"] as double).toStringAsFixed(2)}',
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: AppTheme.lightTheme.colorScheme.error,
@@ -326,7 +326,7 @@ class ExpenseCardWidget extends StatelessWidget {
     } else if (difference == 1) {
       return 'Yesterday';
     } else if (difference < 7) {
-      return '${difference} days ago';
+      return '$difference days ago';
     } else {
       return '${dateTime.month}/${dateTime.day}/${dateTime.year}';
     }

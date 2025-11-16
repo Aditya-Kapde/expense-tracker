@@ -208,7 +208,7 @@ class _BudgetSetupScreenState extends State<BudgetSetupScreen> {
                 ),
                 SizedBox(height: 1.h),
                 _buildSummaryRow('Name', _budgetNameController.text),
-                _buildSummaryRow('Amount', '\$${_amountController.text}'),
+                _buildSummaryRow('Amount', '₹${_amountController.text}'),
                 _buildSummaryRow('Period', _getPeriodLabel(_selectedPeriod)),
                 _buildSummaryRow('Type',
                     _isOverallBudget ? 'Overall Budget' : 'Category Budget'),
@@ -569,8 +569,9 @@ class _BudgetSetupScreenState extends State<BudgetSetupScreen> {
     if (_budgetNameController.text.isNotEmpty) progress += 0.25;
     if (_amountController.text.isNotEmpty) progress += 0.25;
     if (_isOverallBudget || _selectedCategories.isNotEmpty) progress += 0.25;
-    if (_selectedPeriod != TimePeriod.monthly || _startDate != null)
+    if (_selectedPeriod != TimePeriod.monthly || _startDate != null) {
       progress += 0.25;
+    }
 
     return progress;
   }

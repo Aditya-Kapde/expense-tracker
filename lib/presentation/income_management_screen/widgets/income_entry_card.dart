@@ -47,7 +47,7 @@ class IncomeEntryCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '\$${incomeData['amount'].toStringAsFixed(2)}',
+                        '₹${incomeData['amount'].toStringAsFixed(2)}',
                         style: theme.textTheme.titleLarge?.copyWith(
                           color: colorScheme.primary,
                           fontWeight: FontWeight.w600,

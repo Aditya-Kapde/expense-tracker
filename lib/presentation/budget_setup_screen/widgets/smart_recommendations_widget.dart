@@ -66,7 +66,7 @@ class SmartRecommendationsWidget extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 1.h),
               child: _buildRecommendationCard(context, recommendation),
             );
-          }).toList(),
+          }),
         ],
       ),
     );
@@ -114,7 +114,7 @@ class SmartRecommendationsWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    '\$${amount.toStringAsFixed(0)}',
+                    '₹${amount.toStringAsFixed(0)}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: colorScheme.onPrimary,
                       fontWeight: FontWeight.w600,

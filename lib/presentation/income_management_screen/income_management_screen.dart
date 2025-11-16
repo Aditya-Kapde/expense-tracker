@@ -68,7 +68,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
   List<Map<String, dynamic>> _filteredIncomeEntries = [];
   String _searchQuery = '';
   Map<String, dynamic> _currentFilters = {};
-  bool _isLoading = false;
+  final bool _isLoading = false;
   bool _isRefreshing = false;
 
   @override
@@ -424,7 +424,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
 
     final shareText = '''
 Income Entry Details:
-Amount: \$${amount.toStringAsFixed(2)}
+Amount: ₹${amount.toStringAsFixed(2)}
 Category: $category
 Description: $description
 Date: ${_formatDate(date)}
@@ -456,7 +456,7 @@ Date: ${_formatDate(date)}
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildDetailRow('Amount', '\$${amount.toStringAsFixed(2)}', theme),
+            _buildDetailRow('Amount', '₹${amount.toStringAsFixed(2)}', theme),
             _buildDetailRow('Category', category, theme),
             if (description.isNotEmpty)
               _buildDetailRow('Description', description, theme),

@@ -330,13 +330,13 @@ class _ExpenseFilterWidgetState extends State<ExpenseFilterWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '\$${_amountRange.start.round()}',
+              '₹${_amountRange.start.round()}',
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
-              '\$${_amountRange.end.round()}',
+              '₹${_amountRange.end.round()}',
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
               ),
@@ -349,8 +349,8 @@ class _ExpenseFilterWidgetState extends State<ExpenseFilterWidget> {
           max: 2000,
           divisions: 40,
           labels: RangeLabels(
-            '\$${_amountRange.start.round()}',
-            '\$${_amountRange.end.round()}',
+            '₹${_amountRange.start.round()}',
+            '₹${_amountRange.end.round()}',
           ),
           onChanged: (values) {
             setState(() {

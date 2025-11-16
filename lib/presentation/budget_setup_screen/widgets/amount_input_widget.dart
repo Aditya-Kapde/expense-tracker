@@ -120,7 +120,7 @@ class AmountInputWidget extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      '\$${amount.toStringAsFixed(0)}',
+                      '₹${amount.toStringAsFixed(0)}',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onPrimaryContainer,
                         fontWeight: FontWeight.w500,

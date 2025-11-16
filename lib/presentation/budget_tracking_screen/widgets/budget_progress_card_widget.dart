@@ -116,7 +116,7 @@ class BudgetProgressCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${spentAmount.toStringAsFixed(2)}',
+                      '₹${spentAmount.toStringAsFixed(2)}',
                       style: theme.textTheme.titleSmall?.copyWith(
                         color: statusColor,
                         fontWeight: FontWeight.w600,
@@ -134,7 +134,7 @@ class BudgetProgressCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${remainingAmount.toStringAsFixed(2)}',
+                      '₹${remainingAmount.toStringAsFixed(2)}',
                       style: theme.textTheme.titleSmall?.copyWith(
                         color: remainingAmount >= 0
                             ? theme.colorScheme.onSurface
@@ -162,7 +162,7 @@ class BudgetProgressCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$${budgetAmount.toStringAsFixed(2)}',
+                      '₹${budgetAmount.toStringAsFixed(2)}',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.w500,

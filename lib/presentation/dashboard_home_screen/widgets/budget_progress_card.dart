@@ -70,13 +70,13 @@ class BudgetProgressCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Spent: \$${spent.toStringAsFixed(2)}',
+                'Spent: ₹${spent.toStringAsFixed(2)}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
               Text(
-                'Remaining: \$${remaining.toStringAsFixed(2)}',
+                'Remaining: ₹${remaining.toStringAsFixed(2)}',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),

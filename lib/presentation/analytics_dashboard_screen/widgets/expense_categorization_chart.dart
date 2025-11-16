@@ -300,7 +300,7 @@ class _ExpenseCategorizationState extends State<ExpenseCategorization> {
                                       ],
                                     ),
                                     child: Text(
-                                      '\$${(data['amount'] as double).toStringAsFixed(0)}',
+                                      '₹${(data['amount'] as double).toStringAsFixed(0)}',
                                       style:
                                           theme.textTheme.labelSmall?.copyWith(
                                         fontWeight: FontWeight.w600,
@@ -358,7 +358,7 @@ class _ExpenseCategorizationState extends State<ExpenseCategorization> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                       Text(
-                                        '\$${(data['amount'] as double).toStringAsFixed(0)} (${percentage.toStringAsFixed(1)}%)',
+                                        '₹${(data['amount'] as double).toStringAsFixed(0)} (${percentage.toStringAsFixed(1)}%)',
                                         style: theme.textTheme.labelSmall
                                             ?.copyWith(
                                           color: colorScheme.onSurfaceVariant,
@@ -372,7 +372,7 @@ class _ExpenseCategorizationState extends State<ExpenseCategorization> {
                               ],
                             ),
                           );
-                        }).toList(),
+                        }),
                         SizedBox(height: 2.h),
                         Container(
                           padding: EdgeInsets.all(2.w),
@@ -392,7 +392,7 @@ class _ExpenseCategorizationState extends State<ExpenseCategorization> {
                                 ),
                               ),
                               Text(
-                                '\$${totalExpenses.toStringAsFixed(0)}',
+                                '₹${totalExpenses.toStringAsFixed(0)}',
                                 style: theme.textTheme.titleMedium?.copyWith(
                                   color: const Color(0xFFC62828),
                                   fontWeight: FontWeight.w700,

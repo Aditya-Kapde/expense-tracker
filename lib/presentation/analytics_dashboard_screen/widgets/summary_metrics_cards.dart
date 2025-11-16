@@ -214,7 +214,7 @@ class SummaryMetricsCards extends StatelessWidget {
                   context: context,
                   title: 'Highest Expense Category',
                   value:
-                      '\$${(highestExpense['amount'] as double).toStringAsFixed(0)}',
+                      '₹${(highestExpense['amount'] as double).toStringAsFixed(0)}',
                   subtitle: '${highestExpense['name']} this $timePeriod',
                   changePercentage: highestExpense['change'] as double,
                   icon: Icons.restaurant,
@@ -231,7 +231,7 @@ class SummaryMetricsCards extends StatelessWidget {
                   context: context,
                   title: 'Average Daily Spending',
                   value:
-                      '\$${(avgSpending['amount'] as double).toStringAsFixed(1)}',
+                      '₹${(avgSpending['amount'] as double).toStringAsFixed(1)}',
                   subtitle: 'Per day this $timePeriod',
                   changePercentage: avgSpending['change'] as double,
                   icon: Icons.calculate,

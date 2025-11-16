@@ -258,7 +258,7 @@ class _AddTransactionModalState extends State<_AddTransactionModal> {
                   ),
                   SizedBox(height: 1.h),
                   DropdownButtonFormField<String>(
-                    value: _selectedCategory,
+                    initialValue: _selectedCategory,
                     decoration: const InputDecoration(
                       hintText: 'Select category',
                     ),

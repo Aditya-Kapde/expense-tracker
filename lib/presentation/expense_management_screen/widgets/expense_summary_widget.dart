@@ -74,7 +74,7 @@ class ExpenseSummaryWidget extends StatelessWidget {
                 child: _buildSummaryCard(
                   context,
                   'Total Spent',
-                  '\$${totalExpenses.toStringAsFixed(2)}',
+                  '₹${totalExpenses.toStringAsFixed(2)}',
                   'trending_down',
                   colorScheme.error,
                 ),
@@ -84,7 +84,7 @@ class ExpenseSummaryWidget extends StatelessWidget {
                 child: _buildSummaryCard(
                   context,
                   'Average',
-                  '\$${averageExpense.toStringAsFixed(2)}',
+                  '₹${averageExpense.toStringAsFixed(2)}',
                   'analytics',
                   colorScheme.primary,
                 ),
@@ -204,7 +204,7 @@ class ExpenseSummaryWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '\$${topCategory['amount'].toStringAsFixed(2)}',
+                '₹${topCategory['amount'].toStringAsFixed(2)}',
                 style: theme.textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: colorScheme.primary,
