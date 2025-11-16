@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../core/app_export.dart';
+import '../../core/storage_service.dart';
 import '../../widgets/custom_icon_widget.dart';
 import './widgets/add_income_modal.dart';
 import './widgets/empty_income_state.dart';
@@ -17,7 +18,9 @@ class IncomeManagementScreen extends StatefulWidget {
 }
 
 class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
-  final List<Map<String, dynamic>> _allIncomeEntries = [
+  List<Map<String, dynamic>> _allIncomeEntries = [];
+
+  final List<Map<String, dynamic>> _defaultIncomes = [
     {
       'id': 1,
       'amount': 5000.00,
@@ -75,6 +78,24 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
   void initState() {
     super.initState();
     _filteredIncomeEntries = List.from(_allIncomeEntries);
+    _loadIncomes();
+  }
+
+  Future<void> _loadIncomes() async {
+    final stored = StorageService.getIncomes();
+    if (stored.isNotEmpty) {
+      setState(() {
+        _allIncomeEntries = stored;
+        _filteredIncomeEntries = List.from(_allIncomeEntries);
+      });
+    } else {
+      setState(() {
+        _allIncomeEntries = List.from(_defaultIncomes);
+        _filteredIncomeEntries = List.from(_allIncomeEntries);
+      });
+      await StorageService.saveIncomes(_allIncomeEntries);
+    }
+    _applyFilters();
   }
 
   @override
@@ -337,10 +358,11 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
       isScrollControlled: true,
       useSafeArea: true,
       builder: (context) => AddIncomeModal(
-        onSave: (incomeData) {
+        onSave: (incomeData) async {
           setState(() {
             _allIncomeEntries.insert(0, incomeData);
           });
+          await StorageService.addIncome(incomeData);
           _applyFilters();
 
           ScaffoldMessenger.of(context).showSnackBar(
@@ -361,7 +383,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
       useSafeArea: true,
       builder: (context) => AddIncomeModal(
         initialData: entry,
-        onSave: (updatedData) {
+        onSave: (updatedData) async {
           setState(() {
             final index =
                 _allIncomeEntries.indexWhere((e) => e['id'] == entry['id']);
@@ -369,6 +391,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
               _allIncomeEntries[index] = updatedData;
             }
           });
+          await StorageService.saveIncomes(_allIncomeEntries);
           _applyFilters();
 
           ScaffoldMessenger.of(context).showSnackBar(
@@ -382,10 +405,11 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
     );
   }
 
-  void _deleteIncomeEntry(int id) {
+  void _deleteIncomeEntry(int id) async {
     setState(() {
       _allIncomeEntries.removeWhere((entry) => entry['id'] == id);
     });
+    await StorageService.saveIncomes(_allIncomeEntries);
     _applyFilters();
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -396,7 +420,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
     );
   }
 
-  void _duplicateIncomeEntry(Map<String, dynamic> entry) {
+  void _duplicateIncomeEntry(Map<String, dynamic> entry) async {
     final duplicatedEntry = Map<String, dynamic>.from(entry);
     duplicatedEntry['id'] = DateTime.now().millisecondsSinceEpoch;
     duplicatedEntry['date'] = DateTime.now();
@@ -406,6 +430,7 @@ class _IncomeManagementScreenState extends State<IncomeManagementScreen> {
     setState(() {
       _allIncomeEntries.insert(0, duplicatedEntry);
     });
+    await StorageService.saveIncomes(_allIncomeEntries);
     _applyFilters();
 
     ScaffoldMessenger.of(context).showSnackBar(

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 import 'core/app_export.dart';
+import 'core/storage_service.dart';
 import 'widgets/custom_error_widget.dart';
 
 void main() async {
@@ -28,11 +29,12 @@ void main() async {
   };
 
   //  CRITICAL: Device orientation lock - DO NOT REMOVE
-  Future.wait([
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-  ]).then((value) {
-    runApp(MyApp());
-  });
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
+  // Initialize local storage (Hive)
+  await StorageService.init();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

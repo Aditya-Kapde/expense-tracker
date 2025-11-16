@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../core/app_export.dart';
+import '../../core/storage_service.dart';
 import '../../widgets/custom_icon_widget.dart';
 import './widgets/add_expense_modal_widget.dart';
 import './widgets/expense_card_widget.dart';
@@ -19,6 +20,37 @@ class ExpenseManagementScreen extends StatefulWidget {
 
 class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
   List<Map<String, dynamic>> _allExpenses = [];
+
+  final List<Map<String, dynamic>> _defaultExpenses = [
+    {
+      "id": 1,
+      "amount": 45.50,
+      "category": "Food",
+      "description": "Starbucks Coffee",
+      "date": DateTime.now().subtract(const Duration(hours: 2)),
+    },
+    {
+      "id": 2,
+      "amount": 120.00,
+      "category": "Groceries",
+      "description": "Walmart Grocery Shopping",
+      "date": DateTime.now().subtract(const Duration(days: 1)),
+    },
+    {
+      "id": 3,
+      "amount": 25.75,
+      "category": "Transport",
+      "description": "Uber Ride",
+      "date": DateTime.now().subtract(const Duration(days: 1)),
+    },
+    {
+      "id": 4,
+      "amount": 89.99,
+      "category": "Utilities",
+      "description": "Electric Bill",
+      "date": DateTime.now().subtract(const Duration(days: 2)),
+    },
+  ];
   List<Map<String, dynamic>> _filteredExpenses = [];
   String _searchQuery = '';
   Map<String, dynamic> _activeFilters = {};
@@ -27,83 +59,23 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
   @override
   void initState() {
     super.initState();
-    _loadMockData();
+    _loadExpenses();
   }
 
-  void _loadMockData() {
-    _allExpenses = [
-      {
-        "id": 1,
-        "amount": 45.50,
-        "category": "Food",
-        "description": "Starbucks Coffee",
-        "date": DateTime.now().subtract(const Duration(hours: 2)),
-      },
-      {
-        "id": 2,
-        "amount": 120.00,
-        "category": "Groceries",
-        "description": "Walmart Grocery Shopping",
-        "date": DateTime.now().subtract(const Duration(days: 1)),
-      },
-      {
-        "id": 3,
-        "amount": 25.75,
-        "category": "Transport",
-        "description": "Uber Ride",
-        "date": DateTime.now().subtract(const Duration(days: 1)),
-      },
-      {
-        "id": 4,
-        "amount": 89.99,
-        "category": "Utilities",
-        "description": "Electric Bill",
-        "date": DateTime.now().subtract(const Duration(days: 2)),
-      },
-      {
-        "id": 5,
-        "amount": 15.99,
-        "category": "Entertainment",
-        "description": "Netflix Subscription",
-        "date": DateTime.now().subtract(const Duration(days: 3)),
-      },
-      {
-        "id": 6,
-        "amount": 67.80,
-        "category": "Shopping",
-        "description": "Amazon Purchase",
-        "date": DateTime.now().subtract(const Duration(days: 4)),
-      },
-      {
-        "id": 7,
-        "amount": 150.00,
-        "category": "Healthcare",
-        "description": "Doctor Visit",
-        "date": DateTime.now().subtract(const Duration(days: 5)),
-      },
-      {
-        "id": 8,
-        "amount": 35.00,
-        "category": "Fitness",
-        "description": "Gym Membership",
-        "date": DateTime.now().subtract(const Duration(days: 6)),
-      },
-      {
-        "id": 9,
-        "amount": 200.00,
-        "category": "Education",
-        "description": "Online Course",
-        "date": DateTime.now().subtract(const Duration(days: 7)),
-      },
-      {
-        "id": 10,
-        "amount": 75.25,
-        "category": "Food",
-        "description": "Restaurant Dinner",
-        "date": DateTime.now().subtract(const Duration(days: 8)),
-      },
-    ];
-    _filteredExpenses = List.from(_allExpenses);
+  Future<void> _loadExpenses() async {
+    final stored = StorageService.getExpenses();
+    if (stored.isNotEmpty) {
+      setState(() {
+        _allExpenses = stored;
+        _filteredExpenses = List.from(_allExpenses);
+      });
+    } else {
+      setState(() {
+        _allExpenses = List.from(_defaultExpenses);
+        _filteredExpenses = List.from(_allExpenses);
+      });
+      await StorageService.saveExpenses(_allExpenses);
+    }
   }
 
   @override
@@ -417,11 +389,13 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
     );
   }
 
-  void _addExpense(Map<String, dynamic> expenseData) {
+  Future<void> _addExpense(Map<String, dynamic> expenseData) async {
     setState(() {
       _allExpenses.insert(0, expenseData);
       _applyFilters();
     });
+
+    await StorageService.addExpense(expenseData);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -431,7 +405,7 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
     );
   }
 
-  void _updateExpense(Map<String, dynamic> updatedExpense) {
+  Future<void> _updateExpense(Map<String, dynamic> updatedExpense) async {
     setState(() {
       final index =
           _allExpenses.indexWhere((e) => e['id'] == updatedExpense['id']);
@@ -441,6 +415,8 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
       }
     });
 
+    await StorageService.saveExpenses(_allExpenses);
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Expense updated successfully'),
@@ -449,7 +425,7 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
     );
   }
 
-  void _deleteExpense(Map<String, dynamic> expense) {
+  Future<void> _deleteExpense(Map<String, dynamic> expense) async {
     final deletedExpense = expense;
     final deletedIndex =
         _allExpenses.indexWhere((e) => e['id'] == expense['id']);
@@ -458,6 +434,7 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
       _allExpenses.removeWhere((e) => e['id'] == expense['id']);
       _applyFilters();
     });
+    await StorageService.saveExpenses(_allExpenses);
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -465,18 +442,19 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
         duration: const Duration(seconds: 3),
         action: SnackBarAction(
           label: 'Undo',
-          onPressed: () {
+          onPressed: () async {
             setState(() {
               _allExpenses.insert(deletedIndex, deletedExpense);
               _applyFilters();
             });
+            await StorageService.saveExpenses(_allExpenses);
           },
         ),
       ),
     );
   }
 
-  void _duplicateExpense(Map<String, dynamic> expense) {
+  Future<void> _duplicateExpense(Map<String, dynamic> expense) async {
     final duplicatedExpense = Map<String, dynamic>.from(expense);
     duplicatedExpense['id'] = DateTime.now().millisecondsSinceEpoch;
     duplicatedExpense['date'] = DateTime.now();
@@ -485,6 +463,8 @@ class _ExpenseManagementScreenState extends State<ExpenseManagementScreen> {
       _allExpenses.insert(0, duplicatedExpense);
       _applyFilters();
     });
+
+    await StorageService.saveExpenses(_allExpenses);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
